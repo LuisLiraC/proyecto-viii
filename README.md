@@ -77,3 +77,266 @@ Criterios de aceptación:
 ![Profile](https://i.imgur.com/72FOrYe.png)
 ![Profile Solutions Empty State](https://i.imgur.com/NMh5vJQ.png)
 ![Profile Challenges Empty State](https://i.imgur.com/HSQcmIH.png)
+
+## API Contracts
+
+`POST /api/v1/auth/sign_in/`
+
+Request Body
+```json
+{
+  "email": "test@email.com",
+  "password": "123456"
+}
+```
+---
+
+`POST /api/v1/auth/sign_up/`
+
+Request Body
+```json
+{
+  "email": "test@email.com",
+  "password": "123456",
+  "name": "Test Test",
+  "username": "Test123"
+}
+```
+---
+
+`POST /api/v1/auth/username_availabe/`
+
+Request Body
+```json
+{
+  "username": "Test123456"
+}
+```
+
+Response Body
+```json
+{
+  "is_available": true
+}
+```
+---
+
+`GET /api/v1/challenge/`
+
+Response Body
+```json
+[
+  {
+    "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
+    "title": "Reto de ejemplo",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "author": {
+      "username": "LuisLiraC",
+      "name": "Luis Lira"
+    },
+    "created_at": "2023-03-20 18:09:49.539010"
+  },
+  {
+    "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+    "title": "Reto de ejemplo 2",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "author": {
+      "username": "LuisLiraC",
+      "name": "Luis Lira"
+    },
+    "created_at": "2023-03-20 18:09:49.539010"
+  }
+]
+```
+
+---
+
+`GET /api/v1/challenge/<challenge_id>/`
+
+Response Body
+```json
+{
+  "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
+  "title": "Reto de ejemplo",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "author": {
+    "username": "LuisLiraC",
+    "name": "Luis Lira"
+  },
+  "created_at": "2023-03-20 18:09:49.539010"
+}
+```
+---
+
+`GET /api/v1/challenge/<challenge_id>/solutions/`
+
+Response Body
+```json
+[
+  {
+    "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+    "url": "https://luislira.dev/",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "author": {
+      "username": "LuisLiraC",
+      "name": "Luis Lira"
+    },
+    "created_at": "2023-03-20 18:09:49.539010"
+  },
+  {
+    "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
+    "url": "https://luislira.dev/",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "author": {
+      "username": "LuisLiraC",
+      "name": "Luis Lira"
+    },
+    "created_at": "2023-03-20 18:09:49.539010"
+  }
+]
+```
+
+`POST /api/v1/challenge/`
+
+Request Body
+```json
+{
+  "title": "Reto de ejemplo",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "tags": [
+    {
+      "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+      "name": "Frontend"
+    },
+    {
+      "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
+      "name": "Backend"
+    }
+  ]
+}
+```
+
+Response Body
+```json
+{
+  "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5"
+}
+```
+---
+
+`GET /api/v1/solution/<solution_id>/`
+
+Response Body
+```json
+{
+  "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+  "url": "https://luislira.dev/",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "author": {
+    "username": "LuisLiraC",
+    "name": "Luis Lira"
+  },
+  "created_at": "2023-03-20 18:09:49.539010"
+}
+```
+---
+
+`GET /api/v1/solution/<solution_id>/comments/`
+
+Response Body
+```json
+[
+  {
+    "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+    "content": "Comentario de ejemplo",
+    "author": {
+      "username": "LuisLiraC",
+      "name": "Luis Lira"
+    },
+    "created_at": "2023-03-20 18:09:49.539010"
+  },
+  {
+    "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
+    "content": "Comentario de ejemplo",
+    "author": {
+      "username": "LuisLiraC",
+      "name": "Luis Lira"
+    },
+    "created_at": "2023-03-20 18:09:49.539010"
+  }
+]
+```
+---
+
+`POST /api/v1/solution/`
+
+Request Body
+```json
+{
+  "url": "https://luislira.dev/",
+  "description": "Some description",
+  "challenge_id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2"
+}
+```
+
+Response Body
+```json
+{
+  "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2"
+}
+```
+---
+
+`GET /api/v1/tag/`
+
+Response Body
+```json
+[
+  {
+    "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+    "name": "Frontend"
+  },
+  {
+    "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
+    "name": "Backend"
+  }
+]
+```
+---
+
+`GET /api/v1/profile/<username>/`
+
+Response Body
+```json
+{
+  "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+  "name": "Luis Lira",
+  "username": "LuisLiraC",
+  "challenges": [
+    {
+      "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+      "title": "Reto de ejemplo 2",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "created_at": "2023-03-20 18:09:49.539010"
+    }
+  ],
+  "solutions": [
+    {
+      "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "url": "https://luislira.dev/",
+      "challenge_id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+      "created_at": "2023-03-20 18:09:49.539010"
+    }
+  ]
+}
+```
+---
+
+`POST /api/v1/comment/`
+```json
+{
+  "solution_id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+  "content": "Comentario de ejemplo"
+}
+```
