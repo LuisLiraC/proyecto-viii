@@ -47,3 +47,29 @@ Criterios de aceptación:
 
 ![ERD Draw](https://i.imgur.com/NJYQ3eo.jpg)
 ![ERD](https://i.imgur.com/lenSzGq.png)
+
+## Mockups
+
+### Página Principal
+![Home](https://i.imgur.com/nWny0tW.png)
+![Home Empty State](https://i.imgur.com/QQVGcZ8.png)
+
+### Iniciar sesión / Registrarse
+![Sign In Sign Up](https://i.imgur.com/3lV3ea4.png)
+![Sign In Errors](https://i.imgur.com/jMymNg3.png)
+![Sign Up Errors](https://i.imgur.com/IDkXX92.png)
+
+### Vista del reto
+![Challenge View](https://i.imgur.com/IMmxSNd.png)
+![Solved](https://i.imgur.com/nGCdXu4.png)
+![Upload Solution](https://i.imgur.com/pPUSwdH.png)
+![Upload Solution Errors](https://i.imgur.com/ILN6viz.png)
+
+### Crear reto
+![Create Challenge](https://i.imgur.com/S0QaClG.png)
+![Create Challenge Errors](https://i.imgur.com/qipNRt4.png)
+
+### Perfil
+![Profile](https://i.imgur.com/72FOrYe.png)
+![Profile Solutions Empty State](https://i.imgur.com/NMh5vJQ.png)
+![Profile Challenges Empty State](https://i.imgur.com/HSQcmIH.png)
