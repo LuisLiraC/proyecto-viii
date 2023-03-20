@@ -334,9 +334,24 @@ Response Body
 ---
 
 `POST /api/v1/comment/`
+
+Request Body
 ```json
 {
   "solution_id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
   "content": "Comentario de ejemplo"
+}
+```
+
+Response Body
+```json
+{
+  "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+  "content": "Comentario de ejemplo",
+  "author": {
+    "username": "LuisLiraC",
+    "name": "Luis Lira"
+  },
+  "created_at": "2023-03-20 18:09:49.539010"
 }
 ```
