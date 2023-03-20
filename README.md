@@ -42,3 +42,8 @@ Criterios de aceptación:
 Criterios de aceptación:
 - El sistema debe permitir a los administradores ver y editar la información de todos los retos y soluciones.
 - Los administradores deben poder eliminar retos o soluciones si son inapropiados o incumplen las reglas del sistema.
+
+## Database
+
+![ERD Draw](https://i.imgur.com/NJYQ3eo.jpg)
+![ERD](https://i.imgur.com/lenSzGq.png)
