@@ -69,6 +69,10 @@ Criterios de aceptación:
 ![Create Challenge](https://i.imgur.com/S0QaClG.png)
 ![Create Challenge Errors](https://i.imgur.com/qipNRt4.png)
 
+### Solución
+![Solution View](https://i.imgur.com/dqSxFTQ.png)
+![Comment Errors](https://i.imgur.com/pTzN9Oa.png)
+
 ### Perfil
 ![Profile](https://i.imgur.com/72FOrYe.png)
 ![Profile Solutions Empty State](https://i.imgur.com/NMh5vJQ.png)
