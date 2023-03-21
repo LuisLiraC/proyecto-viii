@@ -3,7 +3,7 @@ create table public.auth_user
     id         uuid      default gen_random_uuid() not null
         constraint auth_user_pk
             primary key,
-    email      char(100)                           not null
+    email      varchar(100)                        not null
         constraint auth_user_pk2
             unique,
     password   text                                not null,
@@ -25,7 +25,7 @@ create table public.role
     id         uuid      default gen_random_uuid() not null
         constraint role_pk
             primary key,
-    name       char(20)                            not null
+    name       varchar(20)                         not null
         constraint role_pk2
             unique,
     is_admin   boolean   default false             not null,
@@ -46,8 +46,8 @@ create table public.user_profile
             unique
         constraint user_profile_auth_user_id_fk
             references public.auth_user,
-    name         char(200)                           not null,
-    username     char(100)                           not null
+    name         varchar(100)                        not null,
+    username     varchar(100)                        not null
         constraint user_profile_pk2
             unique,
     created_at   timestamp default now(),
@@ -77,7 +77,7 @@ create table public.tag
     id         uuid      default gen_random_uuid() not null
         constraint tag_pk
             primary key,
-    name       char(30)                            not null
+    name       varchar(30)                         not null
         constraint tag_pk2
             unique,
     created_at timestamp default now()             not null,
@@ -98,7 +98,7 @@ create table public.challenge
     id              uuid      default gen_random_uuid() not null
         constraint challenge_pk
             primary key,
-    title           char(100)                           not null,
+    title           varchar(100)                        not null,
     description     text                                not null,
     user_profile_id uuid                                not null
         constraint challenge_user_profile_id_fk
