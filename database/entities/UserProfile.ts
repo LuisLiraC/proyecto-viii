@@ -1,3 +1,5 @@
+import { Role } from "@/database/entities/Role";
+
 export type UserProfile = {
   id: string;
   auth_user_id: string;
@@ -5,5 +7,5 @@ export type UserProfile = {
   username: string;
   created_at: string;
   updated_at: string;
-  role_id: string;
+  role: Role;
 }
