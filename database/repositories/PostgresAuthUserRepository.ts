@@ -18,4 +18,14 @@ export class PostgresAuthUserRepository implements AuthUserRepository<AuthUser> 
 
     return response.rows[0];
   }
+
+  async create(newUser: Partial<AuthUser>): Promise<AuthUser> {
+    const response = await this.db.query(`
+        INSERT INTO auth_user (email, password)
+        VALUES ($1, $2)
+        RETURNING id;
+    `, [newUser.email, newUser.password]);
+
+    return response.rows[0];
+  }
 }

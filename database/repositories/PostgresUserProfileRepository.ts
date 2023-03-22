@@ -21,7 +21,7 @@ export class PostgresUserProfileRepository implements UserProfileRepository<User
   }
 
   async findByID(id: string): Promise<UserProfile> {
-    const response = await db.query(`
+    const response = await this.db.query(`
         SELECT user_profile.id,
                user_profile.name,
                username,
@@ -34,6 +34,24 @@ export class PostgresUserProfileRepository implements UserProfileRepository<User
         WHERE auth_user_id = $1;
     `, [id]);
 
+    return response.rows[0];
+  }
+
+  async create(newUserProfile: Partial<UserProfile>): Promise<UserProfile> {
+    const response = await db.query(`
+        INSERT INTO user_profile (name, username, auth_user_id, role_id)
+        VALUES ($1, $2, $3, (select id from role where name = 'member'))
+        RETURNING
+            id,
+            name,
+            username,
+            (SELECT json_build_object(
+                            'id', role.id,
+                            'name', role.name
+                        )
+             FROM role
+             WHERE role.id = user_profile.role_id) as role;
+    `, [newUserProfile.name, newUserProfile.username, newUserProfile.auth_user_id]);
     return response.rows[0];
   }
 }
