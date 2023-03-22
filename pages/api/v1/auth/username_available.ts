@@ -14,8 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // verify if username already exists
     const userProfile = await userProfileRepository.findByUsername(username);
 
-    console.log(userProfile);
-
     if (userProfile) return res.status(200).json({ is_available: false });
 
     return res.status(200).json({ is_available: true });
