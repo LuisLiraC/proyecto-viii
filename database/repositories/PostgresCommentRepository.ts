@@ -26,4 +26,24 @@ export class PostgresCommentRepository implements CommentRepository<Comment> {
 
     return response.rows;
   }
+
+  async create(newComment: Partial<Comment>, userId: string): Promise<Comment> {
+    const response = await this.db.query(
+      `INSERT INTO comment (content, solution_id, user_profile_id)
+       VALUES ($1, $2, $3)
+       RETURNING
+           id,
+           content,
+           created_at,
+           (SELECT json_build_object(
+                           'username', user_profile.username,
+                           'name', user_profile.name
+                       )
+            FROM user_profile
+            WHERE user_profile.id = $3) AS author;
+      `, [newComment.content, newComment.solution_id, userId]
+    );
+
+    return response.rows[0];
+  }
 }
