@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!user || !passwordMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-  const userProfile = await userProfileRepository.findByID(user.id);
+  const userProfile = await userProfileRepository.findById(user.id);
 
   // return jwt
   const token = jsonwebtoken.sign({

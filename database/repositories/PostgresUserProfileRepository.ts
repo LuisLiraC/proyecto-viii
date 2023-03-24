@@ -19,7 +19,7 @@ export class PostgresUserProfileRepository implements UserProfileRepository<User
     return response.rows[0];
   }
 
-  async findByID(id: string): Promise<UserProfile> {
+  async findById(id: string): Promise<UserProfile> {
     const response = await this.db.query(`
         SELECT user_profile.id,
                user_profile.name,

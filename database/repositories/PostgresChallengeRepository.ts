@@ -26,7 +26,7 @@ export class PostgresChallengeRepository implements ChallengeRepository<Challeng
     return response.rows;
   }
 
-  async findByID(id: string): Promise<Challenge> {
+  async findById(id: string): Promise<Challenge> {
     const response = await this.db.query(`
         SELECT challenge.id,
                challenge.title,

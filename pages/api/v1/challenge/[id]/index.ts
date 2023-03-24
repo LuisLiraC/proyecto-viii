@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!validateUUID(challengeId)) return res.status(400).json({ message: 'Invalid challenge id' });
 
   const challengeRepository = new PostgresChallengeRepository(db);
-  const challenge = await challengeRepository.findByID(challengeId);
+  const challenge = await challengeRepository.findById(challengeId);
 
   if (!challenge) return res.status(404).json({ message: 'Challenge not found' });
 
