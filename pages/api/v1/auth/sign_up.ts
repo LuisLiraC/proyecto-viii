@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import { PostgresAuthUserRepository } from '@/database/repositories/PostgresAuthUserRepository';
 import { PostgresUserProfileRepository } from "@/database/repositories/PostgresUserProfileRepository";
 import { AuthUser } from "@/database/entities/AuthUser";
@@ -21,13 +21,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!name || name?.length < 2) return res.status(400).json({ message: 'Name must be at least 2 characters' });
   if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) return res.status(400).json({ message: 'Invalid email' });
 
-  const authUserRepository = new PostgresAuthUserRepository(db);
+  const authUserRepository = new PostgresAuthUserRepository(postgres);
   // verify if email already exists
   const user = await authUserRepository.findByEmail(email);
 
   if (user) return res.status(400).json({ message: 'Email already exists' });
 
-  const userProfileRepository = new PostgresUserProfileRepository(db);
+  const userProfileRepository = new PostgresUserProfileRepository(postgres);
   // verify if username already exists
   const usernameExists = await userProfileRepository.findByUsername(username);
 

@@ -4,11 +4,11 @@ import { PostgresChallengeRepository } from '@/database/repositories/PostgresCha
 import { PostgresTagChallengeRepository } from "@/database/repositories/PostgresTagChallengeRepository";
 import { ErrorMessage } from "@/utils/types";
 import verifyToken from "@/utils/verifyToken";
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Array<Challenge> | Challenge | ErrorMessage>) {
   if (req.method === 'GET') {
-    const challengeRepository = new PostgresChallengeRepository(db);
+    const challengeRepository = new PostgresChallengeRepository(postgres);
     const challenges = await challengeRepository.findAll();
     return res.status(200).json(challenges);
   }
@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     if (!token) return res.status(401).json({ message: 'Unauthorized' });
 
-    const challengeRepository = new PostgresChallengeRepository(db);
+    const challengeRepository = new PostgresChallengeRepository(postgres);
 
     const newChallenge: Partial<Challenge> = {
       title,
@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const challenge = await challengeRepository.create(newChallenge, token.id);
 
-    const tagChallengeRepository = new PostgresTagChallengeRepository(db);
+    const tagChallengeRepository = new PostgresTagChallengeRepository(postgres);
 
     const tagChallengeList = tags.map((tag_id: string) => {
       return { tag_id, challenge_id: challenge.id };

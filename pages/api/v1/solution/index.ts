@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import { PostgresSolutionRepository } from '@/database/repositories/PostgresSolutionRepository';
 import { Solution } from '@/database/entities/Solution';
 import type { ErrorMessage } from '@/utils/types';
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   if (!token) return res.status(401).json({ message: 'Unauthorized' });
 
-  const solutionRepository = new PostgresSolutionRepository(db);
+  const solutionRepository = new PostgresSolutionRepository(postgres);
 
   const userAlreadySubmittedSolution = await solutionRepository.verifyUserAlreadySubmittedSolution(challenge_id, token.id);
 

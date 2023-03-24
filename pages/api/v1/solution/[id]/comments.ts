@@ -1,4 +1,4 @@
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PostgresCommentRepository } from "@/database/repositories/PostgresCommentRepository";
 import { Comment } from '@/database/entities/Comment';
@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!solutionId) return res.status(400).json({ message: 'Missing challenge id' });
   if (!validateUUID(solutionId)) return res.status(400).json({ message: 'Invalid challenge id' });
 
-  const commentRepository = new PostgresCommentRepository(db);
+  const commentRepository = new PostgresCommentRepository(postgres);
   const comments = await commentRepository.findBySolutionId(solutionId);
   return res.status(200).json(comments);
 }

@@ -1,4 +1,4 @@
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PostgresCommentRepository } from '@/database/repositories/PostgresCommentRepository';
 import { Comment } from '@/database/entities/Comment';
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     content,
   };
 
-  const commentRepository = new PostgresCommentRepository(db);
+  const commentRepository = new PostgresCommentRepository(postgres);
   const comment = await commentRepository.create(newComment, token.id);
   return res.status(200).json(comment);
 }

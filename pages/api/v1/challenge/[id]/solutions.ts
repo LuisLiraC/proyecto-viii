@@ -1,4 +1,4 @@
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { PostgresSolutionRepository } from "@/database/repositories/PostgresSolutionRepository";
 import { Solution } from '@/database/entities/Solution';
@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!challengeId) return res.status(400).json({ message: 'Missing challenge id' });
   if (!validateUUID(challengeId)) return res.status(400).json({ message: 'Invalid challenge id' });
 
-  const tagRepository = new PostgresSolutionRepository(db);
+  const tagRepository = new PostgresSolutionRepository(postgres);
   const tags = await tagRepository.findByChallengeId(challengeId);
   return res.status(200).json(tags);
 }

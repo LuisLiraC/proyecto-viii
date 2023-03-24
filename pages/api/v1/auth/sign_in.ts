@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import { PostgresAuthUserRepository } from '@/database/repositories/PostgresAuthUserRepository';
 import { PostgresUserProfileRepository } from "@/database/repositories/PostgresUserProfileRepository";
 
@@ -13,8 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   email = email?.trim();
   if (!email || !password) return res.status(400).json({ message: 'Invalid credentials' });
 
-  const authUserRepository = new PostgresAuthUserRepository(db);
-  const userProfileRepository = new PostgresUserProfileRepository(db);
+  const authUserRepository = new PostgresAuthUserRepository(postgres);
+  const userProfileRepository = new PostgresUserProfileRepository(postgres);
 
   const user = await authUserRepository.findByEmail(email);
   const passwordMatch = await bcrypt.compare(password, user.password);

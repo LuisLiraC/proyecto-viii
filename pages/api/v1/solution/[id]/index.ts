@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import type { ErrorMessage } from '@/utils/types';
 import { PostgresSolutionRepository } from '@/database/repositories/PostgresSolutionRepository';
 import { Solution } from '@/database/entities/Solution';
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import validateUUID from "@/utils/validateUUID";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Solution | ErrorMessage>) {
@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!solutionId) return res.status(400).json({ message: 'Missing solution id' });
   if (!validateUUID(solutionId)) return res.status(400).json({ message: 'Invalid solution id' });
 
-  const solutionRepository = new PostgresSolutionRepository(db);
+  const solutionRepository = new PostgresSolutionRepository(postgres);
   const solution = await solutionRepository.findById(solutionId);
 
   if (!solution) return res.status(404).json({ message: 'Solution not found' });

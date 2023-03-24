@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import db from '@/database';
+import postgres from '@/database/clients/postgres';
 import { PostgresUserProfileRepository } from "@/database/repositories/PostgresUserProfileRepository";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' });
-  
-  const userProfileRepository = new PostgresUserProfileRepository(db);
+
+  const userProfileRepository = new PostgresUserProfileRepository(postgres);
   let { username } = req.body;
 
   username = username?.trim();
