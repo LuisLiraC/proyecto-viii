@@ -1,0 +1,1217 @@
+{
+	"info": {
+		"_postman_id": "4787d4c9-7bc9-4461-a1be-8890b5e9a72b",
+		"name": "Proyecto VIII",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5430698"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Sign Up",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"teemo@email.com\",\r\n  \"password\": \"123456\",\r\n  \"name\": \"Teemo\",\r\n  \"username\": \"Teemo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/sign_up",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"sign_up"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Sign Up",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"teemo@email.com\",\r\n  \"password\": \"123456\",\r\n  \"name\": \"Teemo\",\r\n  \"username\": \"Teemo\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/v1/auth/sign_up",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"sign_up"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"y1g22faetg6t\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "245"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:02:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User created\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4OWU0NDMzLTcxNGMtNDUxYS05NDVjLTk0MGE1ODNjN2NjZiIsInJvbGUiOiJtZW1iZXIiLCJpYXQiOjE2Nzk2NDEzNjMsImV4cCI6MTY3OTcyNzc2M30.lgnwrDZhmoXeWoqXUNdnWAKSFreDdVe_xYrZpQB81C0\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Sign In",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.environment.set('jwt', pm.response.json().token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"luislira2@email.com\",\r\n  \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/sign_in",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"sign_in"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Sign In",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"luislira2@email.com\",\r\n  \"password\": \"123456\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/v1/auth/sign_in",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"sign_in"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"hyv89ktv276v\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "247"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:02:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"User logged in\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM2N2RkYjY0LWE1OTEtNDI1MS04NDY3LTg0ODkyNzcyNmQ2NCIsInJvbGUiOiJtZW1iZXIiLCJpYXQiOjE2Nzk2NDEzMzksImV4cCI6MTY3OTcyNzczOX0.Jo9aB78pCuMPVVtSqf6pJlIyE3YrdlYiz1e1Qq-rAn8\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Username Available",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"Luis_LiraC3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/auth/username_available",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"username_available"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Username Available",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"username\": \"Luis_LiraC3\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/v1/auth/username_available",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"username_available"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"ccr5kuczzjl\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "21"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:02:10 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"is_available\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Challenge",
+					"item": [
+						{
+							"name": "All Challenges",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/challenge",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"challenge"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "All Challenges",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/v1/challenge",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"challenge"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"mqhw1zrp7qey\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "538"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"fbdc3958-acc6-4c9a-beb3-01453e544d5b\",\n        \"title\": \"test\",\n        \"description\": \"test\",\n        \"created_at\": \"2023-03-24T10:23:35.662Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC\",\n            \"name\": \"Luis Lira\"\n        }\n    },\n    {\n        \"id\": \"1243c980-fac3-4e89-a936-a95f86f6f597\",\n        \"title\": \"test 2\",\n        \"description\": \"test 2\",\n        \"created_at\": \"2023-03-24T10:27:32.822Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC\",\n            \"name\": \"Luis Lira\"\n        }\n    },\n    {\n        \"id\": \"d17e30b7-2289-4516-82a7-e22766f496a2\",\n        \"title\": \"test 2\",\n        \"description\": \"test 2\",\n        \"created_at\": \"2023-03-24T13:01:43.583Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC2\",\n            \"name\": \"Luis Lira\"\n        }\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Single Challenge",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/challenge/fbdc3958-acc6-4c9a-beb3-01453e544d5b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"challenge",
+										"fbdc3958-acc6-4c9a-beb3-01453e544d5b"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Single Challenge",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/v1/challenge/fbdc3958-acc6-4c9a-beb3-01453e544d5b",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"challenge",
+												"fbdc3958-acc6-4c9a-beb3-01453e544d5b"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"16ib01xedrz4v\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "175"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"fbdc3958-acc6-4c9a-beb3-01453e544d5b\",\n    \"title\": \"test\",\n    \"description\": \"test\",\n    \"created_at\": \"2023-03-24T10:23:35.662Z\",\n    \"author\": {\n        \"username\": \"Luis_LiraC\",\n        \"name\": \"Luis Lira\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Challenge",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"test 2\",\r\n  \"description\": \"test 2\",\r\n  \"tags\": [\r\n    \"Frontend\",\r\n    \"Bases de datos\"\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/challenge/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"challenge",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Challenge",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"title\": \"test 2\",\r\n  \"description\": \"test 2\",\r\n  \"tags\": [\r\n    \"Frontend\",\r\n    \"Bases de datos\"\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/v1/challenge/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"challenge",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"17tolyiyopf19\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "45"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"d17e30b7-2289-4516-82a7-e22766f496a2\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Challenge Tags",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/challenge/fbdc3958-acc6-4c9a-beb3-01453e544d5b/tags",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"challenge",
+										"fbdc3958-acc6-4c9a-beb3-01453e544d5b",
+										"tags"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Challenge Tags",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/v1/challenge/fbdc3958-acc6-4c9a-beb3-01453e544d5b/tags",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"challenge",
+												"fbdc3958-acc6-4c9a-beb3-01453e544d5b",
+												"tags"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"sqbcewiye614\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"name\": \"Frontend\"\n    },\n    {\n        \"name\": \"Backend\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Challenge Solutions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/challenge/1243c980-fac3-4e89-a936-a95f86f6f597/solutions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"challenge",
+										"1243c980-fac3-4e89-a936-a95f86f6f597",
+										"solutions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Challenge Solutions",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/v1/challenge/1243c980-fac3-4e89-a936-a95f86f6f597/solutions",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"challenge",
+												"1243c980-fac3-4e89-a936-a95f86f6f597",
+												"solutions"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"53mhn00dcwb2\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "398"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"481a2e64-bee8-4b2e-be98-c328e243b4d3\",\n        \"description\": \"description\",\n        \"url\": \"https://luislira.dev/\",\n        \"created_at\": \"2023-03-24T13:01:09.975Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC2\",\n            \"name\": \"Luis Lira\"\n        }\n    },\n    {\n        \"id\": \"920d891e-3366-47b1-9fab-113c0b1ea870\",\n        \"description\": \"description\",\n        \"url\": \"https://luislira.dev/\",\n        \"created_at\": \"2023-03-24T12:24:47.440Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC\",\n            \"name\": \"Luis Lira\"\n        }\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Tag",
+					"item": [
+						{
+							"name": "Tags",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/tag",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"tag"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Tags",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/v1/tag",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"tag"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"bnqa03hysf5i\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "198"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"94c1f977-8562-4c9b-9457-8f15e6cbb288\",\n        \"name\": \"Frontend\"\n    },\n    {\n        \"id\": \"835f4359-dd95-4437-8d39-655f5efead96\",\n        \"name\": \"Backend\"\n    },\n    {\n        \"id\": \"64899bd8-e82f-41a2-aade-37c9876648a1\",\n        \"name\": \"Bases de datos\"\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Solution",
+					"item": [
+						{
+							"name": "Single Solution",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/solution/6acc45fd-2d4d-40ae-b48c-ff30cbadf691",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"solution",
+										"6acc45fd-2d4d-40ae-b48c-ff30cbadf691"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Single Solution",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/v1/solution/6acc45fd-2d4d-40ae-b48c-ff30cbadf691",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"solution",
+												"6acc45fd-2d4d-40ae-b48c-ff30cbadf691"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"r7hs68thsx5i\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "198"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:15 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"6acc45fd-2d4d-40ae-b48c-ff30cbadf691\",\n    \"description\": \"Solution test\",\n    \"url\": \"https://luislira.dev\",\n    \"created_at\": \"2023-03-24T11:29:06.426Z\",\n    \"author\": {\n        \"username\": \"Luis_LiraC\",\n        \"name\": \"Luis Lira\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Solution",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"url\": \"https://luislira.dev/\",\r\n  \"challenge_id\": \"1243c980-fac3-4e89-a936-a95f86f6f597\",\r\n  \"description\": \"description\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/solution/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"solution",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Solution",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"url\": \"https://luislira.dev/\",\r\n  \"challenge_id\": \"1243c980-fac3-4e89-a936-a95f86f6f597\",\r\n  \"description\": \"description\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/v1/solution/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"solution",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"ffjbjlsa0u19\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "45"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 07:01:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"481a2e64-bee8-4b2e-be98-c328e243b4d3\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Solution Comments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/solution/920d891e-3366-47b1-9fab-113c0b1ea870/comments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"solution",
+										"920d891e-3366-47b1-9fab-113c0b1ea870",
+										"comments"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Solution Comments",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/v1/solution/920d891e-3366-47b1-9fab-113c0b1ea870/comments",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"solution",
+												"920d891e-3366-47b1-9fab-113c0b1ea870",
+												"comments"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"c1fggfd0r6ny\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "862"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 06:59:35 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"85c84b8b-c5ef-4368-9ea7-7a19962c7f58\",\n        \"content\": \"Comentario\",\n        \"created_at\": \"2023-03-24T12:41:42.992Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC2\",\n            \"name\": \"Luis Lira\"\n        }\n    },\n    {\n        \"id\": \"8dbf346d-a274-4dcb-83eb-fd1fca49394b\",\n        \"content\": \"Comentario de Postman\",\n        \"created_at\": \"2023-03-24T12:59:30.728Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC2\",\n            \"name\": \"Luis Lira\"\n        }\n    },\n    {\n        \"id\": \"d9f6d8fa-62f6-42dd-b680-4a38d99593d5\",\n        \"content\": \"Comentario de Postman\",\n        \"created_at\": \"2023-03-24T12:55:17.486Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC\",\n            \"name\": \"Luis Lira\"\n        }\n    },\n    {\n        \"id\": \"ec9c17a0-cafa-41c7-8c20-eb29a302ff7d\",\n        \"content\": \"Comentario de Postman\",\n        \"created_at\": \"2023-03-24T12:55:45.260Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC\",\n            \"name\": \"Luis Lira\"\n        }\n    },\n    {\n        \"id\": \"79ae5de0-8a9a-48c6-923f-2abf0f761f61\",\n        \"content\": \"Comentario de Postman\",\n        \"created_at\": \"2023-03-24T12:59:14.319Z\",\n        \"author\": {\n            \"username\": \"Luis_LiraC\",\n            \"name\": \"Luis Lira\"\n        }\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Comment",
+					"item": [
+						{
+							"name": "Create Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"content\": \"Comentario de Postman\",\r\n  \"solution_id\": \"920d891e-3366-47b1-9fab-113c0b1ea870\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/comment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"comment"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Comment",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"content\": \"Comentario de Postman\",\r\n  \"solution_id\": \"920d891e-3366-47b1-9fab-113c0b1ea870\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/v1/comment",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"v1",
+												"comment"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "ETag",
+											"value": "\"5wsppzr71m4u\""
+										},
+										{
+											"key": "Content-Length",
+											"value": "174"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 24 Mar 2023 06:59:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": \"8dbf346d-a274-4dcb-83eb-fd1fca49394b\",\n    \"content\": \"Comentario de Postman\",\n    \"created_at\": \"2023-03-24T12:59:30.728Z\",\n    \"author\": {\n        \"username\": \"Luis_LiraC2\",\n        \"name\": \"Luis Lira\"\n    }\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
