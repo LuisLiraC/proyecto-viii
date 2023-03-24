@@ -1,26 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { Challenge } from '@/types/Challenge';
-import type { ErrorMessage } from '@/types/ErrorMessage';
+import type { ErrorMessage } from '@/utils/types';
+import { PostgresChallengeRepository } from '@/database/repositories/PostgresChallengeRepository';
+import { Challenge } from '@/database/entities/Challenge';
 import db from '@/database';
+import validateUUID from "@/utils/validateUUID";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Challenge | ErrorMessage>) {
-  const queryResponse = await db.query(`
-      SELECT challenge.id,
-             challenge.title,
-             challenge.description,
-             challenge.created_at,
-             json_build_object(
-                     'username', user_profile.username,
-                     'name', user_profile.name
-                 ) as author
-      FROM challenge
-               INNER JOIN user_profile on challenge.user_profile_id = user_profile.id
-      WHERE challenge.id = $1;
-  `, [req.query.id]);
+  if (req.method === 'GET') {
+    const { id } = req.query;
+    const challengeId: string = typeof id === 'string' ? id : '';
 
-  const challenge: Challenge = queryResponse.rows[0];
+    if (!challengeId) return res.status(400).json({ message: 'Missing challenge id' });
+    if (!validateUUID(challengeId)) return res.status(400).json({ message: 'Invalid challenge id' });
 
-  if (!challenge) return res.status(404).json({ message: 'Challenge not found' });
+    const challengeRepository = new PostgresChallengeRepository(db);
+    const challenge = await challengeRepository.findByID(challengeId);
 
-  res.status(200).json(challenge);
+    if (!challenge) return res.status(404).json({ message: 'Challenge not found' });
+
+    return res.status(200).json(challenge);
+  }
 }

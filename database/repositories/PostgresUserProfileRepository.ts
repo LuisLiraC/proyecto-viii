@@ -1,7 +1,6 @@
 import { UserProfileRepository } from "@/database/interfaces/UserProfileRepository";
 import { Pool } from "pg";
 import { UserProfile } from "@/database/entities/UserProfile";
-import db from "@/database";
 
 export class PostgresUserProfileRepository implements UserProfileRepository<UserProfile> {
   private db: Pool;
@@ -38,7 +37,7 @@ export class PostgresUserProfileRepository implements UserProfileRepository<User
   }
 
   async create(newUserProfile: Partial<UserProfile>): Promise<UserProfile> {
-    const response = await db.query(`
+    const response = await this.db.query(`
         INSERT INTO user_profile (name, username, auth_user_id, role_id)
         VALUES ($1, $2, $3, (select id from role where name = 'member'))
         RETURNING

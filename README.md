@@ -231,6 +231,27 @@ Response Body
 ]
 ```
 
+---
+
+`GET /api/v1/challenge/<challenge_id>/tags/`
+
+Response Body
+
+```json
+[
+  {
+    "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
+    "name": "Frontend"
+  },
+  {
+    "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+    "name": "Backend"
+  }
+]
+```
+
+---
+
 `POST /api/v1/challenge/`
 
 Request Body
@@ -240,14 +261,8 @@ Request Body
   "title": "Reto de ejemplo",
   "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   "tags": [
-    {
-      "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
-      "name": "Frontend"
-    },
-    {
-      "id": "87c05b98-abfa-4f67-97ce-b6f5e276aea5",
-      "name": "Backend"
-    }
+    "Frontend",
+    "Backend"
   ]
 }
 ```
