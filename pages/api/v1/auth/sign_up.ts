@@ -8,57 +8,56 @@ import { AuthUser } from "@/database/entities/AuthUser";
 import { UserProfile } from "@/database/entities/UserProfile";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
-    let { email, password, name, username }: { email: string } = req.body;
+  if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' });
 
-    email = email?.trim();
-    name = name?.trim();
-    username = username?.trim().replace(/\s/g, '');
+  let { email, password, name, username }: { email: string } = req.body;
 
-    if (!password || password?.length < 6) return res.status(400).json({ message: 'Password must be at least 6 characters' });
-    if (!username || username?.length < 3) return res.status(400).json({ message: 'Username must be at least 3 characters' });
-    if (!name || name?.length < 2) return res.status(400).json({ message: 'Name must be at least 2 characters' });
-    if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) return res.status(400).json({ message: 'Invalid email' });
+  email = email?.trim();
+  name = name?.trim();
+  username = username?.trim().replace(/\s/g, '');
 
-    const authUserRepository = new PostgresAuthUserRepository(db);
-    // verify if email already exists
-    const user = await authUserRepository.findByEmail(email);
+  if (!password || password?.length < 6) return res.status(400).json({ message: 'Password must be at least 6 characters' });
+  if (!username || username?.length < 3) return res.status(400).json({ message: 'Username must be at least 3 characters' });
+  if (!name || name?.length < 2) return res.status(400).json({ message: 'Name must be at least 2 characters' });
+  if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) return res.status(400).json({ message: 'Invalid email' });
 
-    if (user) return res.status(400).json({ message: 'Email already exists' });
+  const authUserRepository = new PostgresAuthUserRepository(db);
+  // verify if email already exists
+  const user = await authUserRepository.findByEmail(email);
 
-    const userProfileRepository = new PostgresUserProfileRepository(db);
-    // verify if username already exists
-    const usernameExists = await userProfileRepository.findByUsername(username);
+  if (user) return res.status(400).json({ message: 'Email already exists' });
 
-    if (usernameExists) return res.status(400).json({ message: 'Username already exists' });
+  const userProfileRepository = new PostgresUserProfileRepository(db);
+  // verify if username already exists
+  const usernameExists = await userProfileRepository.findByUsername(username);
 
-    // hash password
-    const hashedPassword: string = await bcrypt.hash(password, 10);
+  if (usernameExists) return res.status(400).json({ message: 'Username already exists' });
 
-    // create user
-    const authUser: Partial<AuthUser> = {
-      email,
-      password: hashedPassword,
-    };
+  // hash password
+  const hashedPassword: string = await bcrypt.hash(password, 10);
 
-    const newAuthUser = await authUserRepository.create(authUser);
+  // create user
+  const authUser: Partial<AuthUser> = {
+    email,
+    password: hashedPassword,
+  };
 
-    const userProfile: Partial<UserProfile> = {
-      name,
-      username,
-      auth_user_id: newAuthUser.id,
-    };
-    // create user profile
-    const newUserProfile = await userProfileRepository.create(userProfile);
+  const newAuthUser = await authUserRepository.create(authUser);
 
-    // return jwt
-    const token = jsonwebtoken.sign({
-      id: newUserProfile.id,
-      role: newUserProfile.role.name,
-    }, process.env.JWT_SECRET, { expiresIn: '1d' });
+  const userProfile: Partial<UserProfile> = {
+    name,
+    username,
+    auth_user_id: newAuthUser.id,
+  };
+  // create user profile
+  const newUserProfile = await userProfileRepository.create(userProfile);
 
-    return res.status(201).json({ message: 'User created', token });
-  }
+  // return jwt
+  const token = jsonwebtoken.sign({
+    id: newUserProfile.id,
+    role: newUserProfile.role.name,
+  }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-  return res.status(405).json({ message: 'Method not allowed' });
+  return res.status(201).json({ message: 'User created', token });
+
 }
