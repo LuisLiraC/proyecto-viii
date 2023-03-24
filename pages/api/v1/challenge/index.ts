@@ -5,11 +5,32 @@ import { PostgresTagChallengeRepository } from "@/database/repositories/Postgres
 import { ErrorMessage } from "@/utils/types";
 import verifyToken from "@/utils/verifyToken";
 import postgres from '@/database/clients/postgres';
+import redis from "@/database/clients/redis";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Array<Challenge> | Challenge | ErrorMessage>) {
+  const cacheKey = 'CHALLENGES';
+  const cacheExpire = 60 * 60 * 24; // 24 hours
+
   if (req.method === 'GET') {
+    const cachedChallenges = await redis.get(cacheKey);
+
+    if (cachedChallenges) {
+      console.log('Data served from Redis cache');
+      res.setHeader('X-Cache', 'HIT');
+      return res.status(200).json(JSON.parse(cachedChallenges));
+    }
+
     const challengeRepository = new PostgresChallengeRepository(postgres);
     const challenges = await challengeRepository.findAll();
+
+    await redis.set(
+      cacheKey,
+      JSON.stringify(challenges), {
+        ex: cacheExpire,
+      });
+
+    res.setHeader('X-Cache', 'MISS');
+
     return res.status(200).json(challenges);
   }
 
@@ -41,6 +62,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     });
 
     await tagChallengeRepository.create(tagChallengeList);
+
+    await redis.del(cacheKey);
 
     return res.status(201).json(challenge);
   }
