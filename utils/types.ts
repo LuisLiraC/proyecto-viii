@@ -9,3 +9,7 @@ export type JwtPayload = {
   iam: string;
   exp: number;
 }
+
+export type UserNameAvailability = {
+  is_available: boolean;
+}

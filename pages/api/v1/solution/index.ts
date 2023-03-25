@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import type { ErrorMessage } from '@/utils/types';
 import postgres from '@/database/clients/postgres';
 import { PostgresSolutionRepository } from '@/database/repositories/PostgresSolutionRepository';
 import { Solution } from '@/database/entities/Solution';
-import type { ErrorMessage } from '@/utils/types';
 import validateUUID from "@/utils/validateUUID";
 import verifyToken from "@/utils/verifyToken";
 import validateUrl from "@/utils/validateUrl";
@@ -39,8 +39,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   };
 
   const solution = await solutionRepository.create(newSolution, token.id);
-
-  if (!solution) return res.status(404).json({ message: 'Solution not found' });
 
   return res.status(200).json(solution);
 }

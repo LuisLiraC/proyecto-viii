@@ -1,8 +1,8 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+import type { ErrorMessage } from "@/utils/types";
 import postgres from '@/database/clients/postgres';
-import { NextApiRequest, NextApiResponse } from 'next';
 import { PostgresCommentRepository } from '@/database/repositories/PostgresCommentRepository';
 import { Comment } from '@/database/entities/Comment';
-import { ErrorMessage } from "@/utils/types";
 import verifyToken from "@/utils/verifyToken";
 import validateUUID from "@/utils/validateUUID";
 

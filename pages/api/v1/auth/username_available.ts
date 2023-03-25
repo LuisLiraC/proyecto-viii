@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import type { ErrorMessage, UserNameAvailability } from "@/utils/types";
 import postgres from '@/database/clients/postgres';
 import { PostgresUserProfileRepository } from "@/database/repositories/PostgresUserProfileRepository";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<UserNameAvailability | ErrorMessage>) {
   if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' });
 
   const userProfileRepository = new PostgresUserProfileRepository(postgres);
