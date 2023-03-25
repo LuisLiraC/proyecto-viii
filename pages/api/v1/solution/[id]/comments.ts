@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   if (!solutionId) return res.status(400).json({ message: 'Missing challenge id' });
   if (!validateUUID(solutionId)) return res.status(400).json({ message: 'Invalid challenge id' });
 
-  const cacheKey = `COMMENTS_${solutionId}`;
+  const cacheKey = `SOLUTION_COMMENTS_${solutionId}`;
   const cacheTTL = 60 * 60 * 24; // 24 hours
 
   const cachedComments = await redis.get(cacheKey);
