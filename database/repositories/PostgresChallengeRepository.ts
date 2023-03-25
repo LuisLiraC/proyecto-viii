@@ -19,7 +19,16 @@ export class PostgresChallengeRepository implements ChallengeRepository<Challeng
                json_build_object(
                        'username', user_profile.username,
                        'name', user_profile.name
-                   ) as author
+                   )                                             as author,
+               (SELECT json_agg(
+                               json_build_object(
+                                       'id', tag.id,
+                                       'name', tag.name
+                                   )
+                           )
+                FROM tag
+                         INNER JOIN tag_challenge ON tag.id = tag_challenge.tag_id
+                WHERE tag_challenge.challenge_id = challenge.id) as tags
         FROM challenge
                  INNER JOIN user_profile on challenge.user_profile_id = user_profile.id
     `);
@@ -35,7 +44,16 @@ export class PostgresChallengeRepository implements ChallengeRepository<Challeng
                json_build_object(
                        'username', user_profile.username,
                        'name', user_profile.name
-                   ) as author
+                   )                                             as author,
+               (SELECT json_agg(
+                               json_build_object(
+                                       'id', tag.id,
+                                       'name', tag.name
+                                   )
+                           )
+                FROM tag
+                         INNER JOIN tag_challenge ON tag.id = tag_challenge.tag_id
+                WHERE tag_challenge.challenge_id = challenge.id) as tags
         FROM challenge
                  INNER JOIN user_profile on challenge.user_profile_id = user_profile.id
         WHERE challenge.id = $1;

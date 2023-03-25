@@ -1,4 +1,5 @@
 import { UserProfile } from "@/database/entities/UserProfile";
+import { Tag } from "@/database/entities/Tag";
 
 export type Challenge = {
   id: string;
@@ -7,4 +8,5 @@ export type Challenge = {
   created_at: string;
   updated_at: string;
   author: UserProfile
+  tags: Array<Tag>;
 }

@@ -11,14 +11,14 @@ export class PostgresTagRepository implements TagRepository<Tag> {
 
   async findAll(): Promise<Tag[]> {
     const { rows } = await this.db.query(`
-        SELECT id, name
+        SELECT *
         FROM tag`);
     return rows;
   }
 
   async findByChallengeId(challengeId: string): Promise<Tag[]> {
     const { rows } = await this.db.query(`
-        SELECT tag.name
+        SELECT *
         FROM tag
                  INNER JOIN tag_challenge ON tag_challenge.tag_id = tag.id
         WHERE tag_challenge.challenge_id = $1`, [challengeId]);

@@ -166,7 +166,17 @@ Response Body
       "username": "LuisLiraC",
       "name": "Luis Lira"
     },
-    "created_at": "2023-03-20 18:09:49.539010"
+    "created_at": "2023-03-20 18:09:49.539010",
+    "tags": [
+      {
+        "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+        "name": "Python"
+      },
+      {
+        "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+        "name": "Django"
+      }
+    ]
   },
   {
     "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
@@ -176,7 +186,17 @@ Response Body
       "username": "LuisLiraC",
       "name": "Luis Lira"
     },
-    "created_at": "2023-03-20 18:09:49.539010"
+    "created_at": "2023-03-20 18:09:49.539010",
+    "tags": [
+      {
+        "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+        "name": "Python"
+      },
+      {
+        "id": "c4bbdcf5-e1eb-43ef-8572-464963b41cd2",
+        "name": "Django"
+      }
+    ]
   }
 ]
 ```
@@ -196,7 +216,13 @@ Response Body
     "username": "LuisLiraC",
     "name": "Luis Lira"
   },
-  "created_at": "2023-03-20 18:09:49.539010"
+  "created_at": "2023-03-20 18:09:49.539010",
+  "tags": [
+    {
+      "id": "94c1f977-8562-4c9b-9457-8f15e6cbb288",
+      "name": "Frontend"
+    }
+  ]
 }
 ```
 
