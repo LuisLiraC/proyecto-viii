@@ -4,9 +4,10 @@ const options: RedisClientOptions = {
   socket: {
     host: process.env.REDIS_HOST,
     port: parseInt(process.env.REDIS_PORT),
+    timeout: 2000,
   },
   password: process.env.REDIS_PASSWORD,
-  database: 0
+  database: 0,
 };
 
 const client = createClient(options);

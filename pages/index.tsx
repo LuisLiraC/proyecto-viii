@@ -5,8 +5,6 @@ interface Props {
 }
 
 export default function Home(props: Props) {
-
-  console.log(props.challenges);
   return (
     <div>
       <h1>Challenges</h1>
@@ -27,7 +25,7 @@ export default function Home(props: Props) {
 }
 
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const res = await fetch(`${process.env.APP_HOST}/api/v1/challenge`);
   const challenges = await res.json();
 
