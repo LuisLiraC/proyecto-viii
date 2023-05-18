@@ -37,9 +37,22 @@ export class PostgresSolutionRepository implements SolutionRepository {
               json_build_object(
                       'username', user_profile.username,
                       'name', user_profile.name
-                  ) as author
+                  ) as author,
+              challenge.id as challenge_id,
+              (
+                        SELECT json_agg(
+                                   json_build_object(
+                                        'id', tag.id,
+                                        'name', tag.name
+                                   )
+                              )
+                          FROM tag
+                                   INNER JOIN tag_challenge ON tag.id = tag_challenge.tag_id
+                          WHERE tag_challenge.challenge_id = challenge.id
+                      ) as tags
        FROM solution
                 INNER JOIN user_profile on solution.user_profile_id = user_profile.id
+                LEFT JOIN challenge on challenge.id = solution.challenge_id
        WHERE solution.id = $1`,
       [id]
     );
@@ -50,12 +63,25 @@ export class PostgresSolutionRepository implements SolutionRepository {
   async findByUsername(username: string): Promise<Solution[]> {
     const response = await this.db.query(
       `SELECT solution.id,
-              solution.description,
-              solution.url,
-              solution.created_at
-       FROM solution
-                INNER JOIN user_profile on solution.user_profile_id = user_profile.id
-       WHERE user_profile.username = $1`,
+                 solution.description,
+                 solution.url,
+                 solution.created_at,
+                 challenge.id,
+                 (
+                        SELECT json_agg(
+                                   json_build_object(
+                                        'id', tag.id,
+                                        'name', tag.name
+                                   )
+                              )
+                          FROM tag
+                                   INNER JOIN tag_challenge ON tag.id = tag_challenge.tag_id
+                          WHERE tag_challenge.challenge_id = challenge.id
+                      ) as tags
+          FROM solution
+                   INNER JOIN user_profile on solution.user_profile_id = user_profile.id
+                   LEFT JOIN challenge on challenge.id = solution.challenge_id
+          WHERE user_profile.username = $1`,
       [username]
     );
 
