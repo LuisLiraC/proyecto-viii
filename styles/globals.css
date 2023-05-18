@@ -61,3 +61,63 @@ body {
     text-decoration: none;
     font-weight: 500;
 }
+
+.ChallengeHomeCard {
+    border: 2px solid #d7d7d7;
+    padding: 16px;
+    margin: 8px 0;
+    border-radius: 8px;
+}
+
+.ChallengeHomeCard-Title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.ChallengeHomeCard-Author {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: gray;
+}
+
+.ChallengeHomeCard-Description {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 8px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Número de líneas a mostrar */
+    overflow: hidden;
+}
+
+.ChallengeHomeCard-TagsContainer {
+    display: flex;
+    gap: 8px;
+}
+
+.Tag {
+    font-size: 12px;
+    background-color: #111111;
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 16px;
+    text-decoration: none;
+}
+
+.ChallengeHomeCard-Link {
+    display: block;
+    text-decoration: none;
+    color: white;
+    background: #7f3cee;
+    padding: 8px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.ChallengeHomeCard-Link:hover {
+    background: #5f1bbf;
+}
