@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { ErrorMessage } from "@/utils/types";
 import postgres from '@/database/clients/postgres';
+import redis from "@/database/clients/redis";
 import { PostgresCommentRepository } from '@/database/repositories/PostgresCommentRepository';
 import { Comment } from '@/database/entities/Comment';
 import verifyToken from "@/utils/verifyToken";
@@ -28,5 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const commentRepository = new PostgresCommentRepository(postgres);
   const comment = await commentRepository.create(newComment, token.id);
+
+  await redis.del(`SOLUTION_COMMENTS_${solution_id}`);
+  
   return res.status(200).json(comment);
 }
