@@ -75,6 +75,7 @@ function useAuthProvider() {
   useEffect(() => {
     if (document.cookie.includes("token")) {
       setIsLogged(true);
+      setUsername(jsonwebtoken.decode(document.cookie.split("=")[1]).username);
     }
   }, []);
 
