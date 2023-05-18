@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { ErrorMessage } from '@/utils/types';
 import postgres from '@/database/clients/postgres';
+import redis from "@/database/clients/redis";
 import { PostgresSolutionRepository } from '@/database/repositories/PostgresSolutionRepository';
 import { Solution } from '@/database/entities/Solution';
 import validateUUID from "@/utils/validateUUID";
@@ -39,6 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   };
 
   const solution = await solutionRepository.create(newSolution, token.id);
+  await redis.del(`PROFILE_${token.username}`);
 
   return res.status(200).json(solution);
 }

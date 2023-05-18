@@ -47,6 +47,21 @@ export class PostgresSolutionRepository implements SolutionRepository {
     return response.rows[0];
   }
 
+  async findByUsername(username: string): Promise<Solution[]> {
+    const response = await this.db.query(
+      `SELECT solution.id,
+              solution.description,
+              solution.url,
+              solution.created_at
+       FROM solution
+                INNER JOIN user_profile on solution.user_profile_id = user_profile.id
+       WHERE user_profile.username = $1`,
+      [username]
+    );
+
+    return response.rows;
+  }
+
   async create(newSolution: Partial<Solution>, userId: string): Promise<Solution> {
     const response = await this.db.query(
       `

@@ -5,6 +5,8 @@ export interface SolutionRepository {
 
   findById(id: string): Promise<Solution>;
 
+  findByUsername(username: string): Promise<Solution[]>;
+
   create(newSolution: Solution, userId: string): Promise<Solution>;
 
   verifyUserAlreadySubmittedSolution(challengeId: string, userId: string): Promise<boolean>;

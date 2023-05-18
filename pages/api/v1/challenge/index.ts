@@ -58,6 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     await tagChallengeRepository.create(tagChallengeList);
 
     await redis.del(cacheKey);
+    await redis.del(`PROFILE_${token.username}`);
 
     return res.status(201).json(challenge);
   }

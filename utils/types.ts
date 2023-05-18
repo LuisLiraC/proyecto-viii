@@ -8,6 +8,7 @@ export type JwtPayload = {
   role: string;
   iam: string;
   exp: number;
+  username: string;
 }
 
 export type UserNameAvailability = {
@@ -30,4 +31,12 @@ export type ChallengeDetail = {
   created_at: string;
   author: Author,
   tags: Tag[];
+}
+
+export type SolutionDetail = {
+  id: string;
+  description: string;
+  url: string;
+  created_at: string;
+  author: Author;
 }

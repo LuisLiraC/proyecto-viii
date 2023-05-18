@@ -69,4 +69,26 @@ export class PostgresChallengeRepository implements ChallengeRepository<Challeng
     `, [newChallenge.title, newChallenge.description, userId]);
     return response.rows[0];
   }
+
+  async findByUsername(username: string): Promise<Challenge[]> {
+    const response = await this.db.query(`
+        SELECT challenge.id,
+                challenge.title,
+                challenge.description,
+                challenge.created_at,
+                (SELECT json_agg(
+                                json_build_object(
+                                        'id', tag.id,
+                                        'name', tag.name
+                                    )
+                            )
+                  FROM tag
+                          INNER JOIN tag_challenge ON tag.id = tag_challenge.tag_id
+                  WHERE tag_challenge.challenge_id = challenge.id) as tags
+                FROM challenge
+                INNER JOIN user_profile on challenge.user_profile_id = user_profile.id
+                WHERE user_profile.username = $1;
+    `, [username]);
+    return response.rows;
+  }
 }
