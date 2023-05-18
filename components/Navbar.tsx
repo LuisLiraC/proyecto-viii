@@ -2,7 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
 export default function Navbar() {
-  const { isLogged, signOut } = useAuth();
+  const { isLogged, signOut, username } = useAuth();
 
   return (
     <nav className="Navbar">
@@ -21,7 +21,7 @@ export default function Navbar() {
             <li className="Navbar--List--Item">
               <Link
                 className="List--Item--Link"
-                href="/profile"
+                href={`/profile/${username}`}
                 id="profile"
               >
                 Mi perfil

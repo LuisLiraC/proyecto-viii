@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const user = await authUserRepository.findByEmail(email);
 
   if (!user) return res.status(400).json({ message: 'Invalid credentials' });
-  
+
   const passwordMatch = await bcrypt.compare(password, user.password);
 
   if (!passwordMatch) return res.status(400).json({ message: 'Invalid credentials' });
@@ -28,6 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // return jwt
   const token = jsonwebtoken.sign({
+    username: userProfile.username,
     id: userProfile.id,
     role: userProfile.role.name,
   }, process.env.JWT_SECRET, { expiresIn: '1d' });

@@ -54,6 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // return jwt
   const token = jsonwebtoken.sign({
+    username: newUserProfile.username,
     id: newUserProfile.id,
     role: newUserProfile.role.name,
   }, process.env.JWT_SECRET, { expiresIn: '1d' });

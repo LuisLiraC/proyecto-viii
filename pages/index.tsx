@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Challenge } from "@/database/entities/Challenge";
 
 interface Props {
@@ -18,6 +19,9 @@ export default function Home(props: Props) {
             ))
           }
           <p>{challenge.description}</p>
+          <Link href={`/challenges/${challenge.id}`}>
+            Ver más
+          </Link>
         </div>
       ))}
     </div>

@@ -1,8 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import jsonwebtoken from "jsonwebtoken";
 
 interface AuthContextData {
   isLogged: boolean;
+  username: string;
   signIn: (credentials: Credentials) => Promise<void>;
   signOut: () => Promise<void>;
   signUp: (newUser: newUser) => Promise<void>;
@@ -23,6 +25,7 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 function useAuthProvider() {
   const [isLogged, setIsLogged] = useState(false);
+  const [username, setUsername] = useState("");
   const router = useRouter();
 
   const signIn = async (credentials: Credentials) => {
@@ -36,9 +39,12 @@ function useAuthProvider() {
 
     const data = await res.json();
 
+    const decodedToken = jsonwebtoken.decode(data.token);
+    setUsername(decodedToken.username);
+
     document.cookie = `token=${data.token}`;
     setIsLogged(true);
-    await router.push("/profile");
+    await router.push(`/profile/${username}`);
   };
 
   const signUp = async (newUser: newUser) => {
@@ -52,9 +58,12 @@ function useAuthProvider() {
 
     const data = await res.json();
 
+    const decodedToken = jsonwebtoken.decode(data.token);
+    setUsername(decodedToken.username);
+
     document.cookie = `token=${data.token}`;
     setIsLogged(true);
-    await router.push("/profile");
+    await router.push(`/profile/${username}`);
   };
 
   const signOut = async () => {
@@ -71,6 +80,7 @@ function useAuthProvider() {
 
   return {
     isLogged,
+    username,
     signIn,
     signOut,
     signUp
