@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import { Tag } from "@/utils/types";
 
 function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [tags, setTags] = useState<String[]>([]);
   const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const title = e.target.title.value.trim();
+    const description = e.target.description.value.trim();
+
     const newChallenge = {
       title,
       description,
@@ -53,8 +54,6 @@ function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
             type="text"
             name="title"
             id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value.trim())}
           />
         </div>
 
@@ -65,8 +64,6 @@ function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
             id="description"
             cols={30}
             rows={10}
-            value={description}
-            onChange={(e) => setDescription(e.target.value.trim())}
           ></textarea>
         </div>
 
