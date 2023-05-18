@@ -42,9 +42,9 @@ function useAuthProvider() {
     const decodedToken = jsonwebtoken.decode(data.token);
     setUsername(decodedToken.username);
 
-    document.cookie = `token=${data.token}`;
+    document.cookie = `token=${data.token}; path=/`;
     setIsLogged(true);
-    await router.push(`/profile/${username}`);
+    await router.push(`/profile/${decodedToken.username}`);
   };
 
   const signUp = async (newUser: newUser) => {
@@ -61,7 +61,7 @@ function useAuthProvider() {
     const decodedToken = jsonwebtoken.decode(data.token);
     setUsername(decodedToken.username);
 
-    document.cookie = `token=${data.token}`;
+    document.cookie = `token=${data.token}; path=/`;
     setIsLogged(true);
     await router.push(`/profile/${username}`);
   };
