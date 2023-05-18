@@ -46,9 +46,9 @@ function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
 
   return (
     <div>
-      <h1>Crear reto</h1>
+      <h1 className="NewChallengeTitle">Crear reto</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='FormElement'>
           <label htmlFor="title">Título</label>
           <input
             type="text"
@@ -57,33 +57,35 @@ function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
           />
         </div>
 
-        <div>
+        <div className='FormElement'>
           <label htmlFor="description">Descripción</label>
           <textarea
             name="description"
             id="description"
             cols={30}
-            rows={10}
+            rows={15}
           ></textarea>
         </div>
 
-        <div>
-          <label htmlFor="tags">Tags</label>
-          {currentTags.map((tag) => (
-            <div key={tag.id}>
-              <input
-                type="checkbox"
-                name="tag"
-                id={`${tag.name}`}
-                value={tag.name}
-                onChange={handleTags}
-              />
-              <label htmlFor={`${tag.name}`}>{tag.name}</label>
-            </div>
-          ))}
+        <div className="FormElement">
+          <label htmlFor="tags">Etiquetas</label>
+          <div className="TagsForm">
+            {currentTags.map((tag) => (
+              <div key={tag.id} className="TagForm">
+                <input
+                  type="checkbox"
+                  name="tag"
+                  id={`${tag.name}`}
+                  value={tag.name}
+                  onChange={handleTags}
+                />
+                <label htmlFor={`${tag.name}`}>{tag.name}</label>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <button type="submit">Subir reto</button>
+        <button type="submit" className="SubmitButton">Subir reto</button>
       </form>
     </div>
   );

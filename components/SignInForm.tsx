@@ -18,10 +18,10 @@ function SignInForm() {
 
 
   return (
-    <div>
-      <h1>Iniciar sesión</h1>
+    <div className="SignFormContainer">
+      <h1 className="FormTitle">Iniciar sesión</h1>
       <form onSubmit={handleLogin}>
-        <div>
+        <div className="FormElement">
           <label htmlFor="email">E-mail</label>
           <input
             type="email"
@@ -30,7 +30,7 @@ function SignInForm() {
             onChange={(e) => setEmail(e.target.value.trim())}
           />
         </div>
-        <div>
+        <div className="FormElement">
           <label htmlFor="password">Contraseña</label>
           <input
             type="password"
@@ -39,7 +39,7 @@ function SignInForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit" className="SubmitButton">Iniciar sesión</button>
       </form>
     </div>
   );

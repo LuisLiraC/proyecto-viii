@@ -35,10 +35,10 @@ function SignUpForm() {
   };
 
   return (
-    <div>
-      <h1>Registrarse</h1>
+    <div className="SignFormContainer">
+      <h1 className="FormTitle">Registrarse</h1>
       <form onSubmit={handleRegister}>
-        <div>
+        <div className="FormElement">
           <label htmlFor="name">Nombre</label>
           <input
             type="text"
@@ -47,7 +47,7 @@ function SignUpForm() {
             onChange={(e) => setName(e.target.value.trim())}
           />
         </div>
-        <div>
+        <div className="FormElement">
           <label htmlFor="email">E-mail</label>
           <input
             type="email"
@@ -56,7 +56,7 @@ function SignUpForm() {
             onChange={(e) => setEmail(e.target.value.trim())}
           />
         </div>
-        <div>
+        <div className="FormElement">
           <label htmlFor="username">Nombre de usuario</label>
           <input
             type="text"
@@ -65,7 +65,7 @@ function SignUpForm() {
             onChange={(e) => setUserName(e.target.value.trim())}
           />
         </div>
-        <div>
+        <div className="FormElement">
           <label htmlFor="password">Contraseña</label>
           <input
             type="password"
@@ -74,7 +74,7 @@ function SignUpForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Registrarse</button>
+        <button type="submit" className="SubmitButton">Registrarse</button>
       </form>
     </div>
   );

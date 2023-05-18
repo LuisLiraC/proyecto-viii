@@ -21,6 +21,15 @@ export default function Navbar() {
             <li className="Navbar--List--Item">
               <Link
                 className="List--Item--Link"
+                href="/challenges/new"
+                id="create"
+              >
+                Crear reto
+              </Link>
+            </li>
+            <li className="Navbar--List--Item">
+              <Link
+                className="List--Item--Link"
                 href={`/profile/${username}`}
                 id="profile"
               >

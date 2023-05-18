@@ -3,7 +3,7 @@ import SignUpForm from "@/components/SignUpForm";
 
 export default function Login() {
   return (
-    <div>
+    <div className="Login">
       <SignInForm/>
       <SignUpForm/>
     </div>
