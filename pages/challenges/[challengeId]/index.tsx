@@ -31,29 +31,32 @@ function ChallengeDetail({ challenge }: { challenge: ChallengeDetail }) {
   };
 
   return (
-    <div>
-      <div>
-        <h1>{challenge.title}</h1>
-        <h2>Autor: {challenge.author.name}</h2>
-        {
-          challenge.tags.map((tag) => (
-            <span key={tag.id}>{tag.name}</span>
-          ))
-        }
-        <p>{challenge.description}</p>
+    <div className="ChallengeDetail-View">
+      <div className="ChallengeDetail">
+        <h1 className="ChallengeDetail-Title">{challenge.title}</h1>
+        <h2 className="ChallengeDetail-Author">Autor: {challenge.author.name}</h2>
+        <div className="TagsContainer">
+          {
+            challenge.tags.map((tag) => (
+              <span key={tag.id} className='Tag'>{tag.name}</span>
+            ))
+          }
+        </div>
+        <p className="ChallengeDetail-Description">{challenge.description}</p>
       </div>
-      <div onSubmit={handleSubmit}>
-        <p>¿Tienes una solución para este reto? Súbela aquí</p>
-        <form>
-          <div>
+
+      <div className="SolutionIntent">
+        <p className="SolutionIntent-Message">¿Tienes una solución para este reto? Súbela aquí</p>
+        <form onSubmit={handleSubmit} className='SolutionForm'>
+          <div className="FormElement">
             <label htmlFor="url">URL de la solución</label>
             <input type="text" name="url" id="url"/>
           </div>
-          <div>
+          <div className="FormElement">
             <label htmlFor="description">Descripción</label>
             <textarea name="description" id="description" cols={30} rows={10}></textarea>
           </div>
-          <button type="submit">Subir solución</button>
+          <button type="submit" className='SubmitButton'>Subir solución</button>
         </form>
       </div>
     </div>

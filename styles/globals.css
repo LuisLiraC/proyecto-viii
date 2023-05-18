@@ -91,7 +91,7 @@ body {
     overflow: hidden;
 }
 
-.ChallengeHomeCard-TagsContainer {
+.TagsContainer {
     display: flex;
     gap: 8px;
 }
@@ -121,3 +121,88 @@ body {
 .ChallengeHomeCard-Link:hover {
     background: #5f1bbf;
 }
+
+.ChallengeDetail-View {
+    display: flex;
+}
+
+.ChallengeDetail {
+    flex-basis: 70%;
+    border-right: 2px solid #d7d7d7;
+}
+
+.ChallengeDetail-Title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.ChallengeDetail-Author {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: gray;
+}
+
+.ChallengeDetail-Description {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 8px 0;
+    padding-right: 20px;
+    white-space: pre-line;
+}
+
+.SolutionIntent {
+    flex-basis: 30%;
+    padding: 16px;
+}
+
+.SolutionIntent-Message {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.FormElement {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.FormElement label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.FormElement input {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    font-size: 1rem;
+}
+
+.FormElement textarea {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+    font-size: 1rem;
+    resize: none;
+}
+
+.SubmitButton {
+    background-color: #7f3cee;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.SubmitButton:hover {
+    background-color: #5f1bbf;
+}
+

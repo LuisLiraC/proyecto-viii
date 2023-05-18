@@ -13,7 +13,7 @@ export default function Home(props: Props) {
         <div key={challenge.id} className='ChallengeHomeCard'>
           <h2 className='ChallengeHomeCard-Title'>{challenge.title}</h2>
           <h3 className='ChallengeHomeCard-Author'>Autor: {challenge.author.name}</h3>
-          <div className='ChallengeHomeCard-TagsContainer'>
+          <div className='TagsContainer'>
             {
               challenge.tags.map((tag) => (
                 <span key={tag.id} className='Tag'>{tag.name}</span>
