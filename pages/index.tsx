@@ -49,19 +49,22 @@ export default function Home(props: Props) {
   };
 
   return (
-    <div>
+    <div className="Home">
       <Head>
         <title>Home | Open Dev Projects</title>
       </Head>
       <div className="Filters">
-        <div>
+        <div className="FormElement">
+          <label htmlFor="title" className="FilterTitle">Buscar</label>
           <input type={'text'} onChange={handleFilterInput}/>
         </div>
+        <hr/>
         <div>
-          <p>Etiquetas</p>
-          <div>
+          <p className="FilterTitle">Etiquetas</p>
+
+          <div className="TagsFilter">
             {props.tags.map((tag) => (
-              <div key={tag.id} className="TagForm">
+              <div key={tag.id} className="TagOption">
                 <input
                   type="checkbox"
                   name="tag"
@@ -75,7 +78,8 @@ export default function Home(props: Props) {
           </div>
         </div>
       </div>
-      <div>
+
+      <div className="Results">
         <h1>Retos encontrados</h1>
         {challenges.map((challenge) => (
           <div key={challenge.id} className='ChallengeHomeCard'>
@@ -110,8 +114,8 @@ export default function Home(props: Props) {
 
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.APP_HOST}/api/v1/challenge`);
-  const challenges = await res.json();
+  const challengesResponse = await fetch(`${process.env.APP_HOST}/api/v1/challenge`);
+  const challenges = await challengesResponse.json();
 
   const tagsResponse = await fetch(`${process.env.APP_HOST}/api/v1/tag`);
   const tags = await tagsResponse.json();

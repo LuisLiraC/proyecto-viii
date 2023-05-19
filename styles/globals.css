@@ -355,3 +355,39 @@ hr {
     font-size: 1.2rem;
     font-weight: 500;
 }
+
+.Home {
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+
+.Filters {
+    padding: 16px;
+    margin-top: 1.5rem;
+}
+
+.Results {
+    padding: 16px;
+}
+
+.TagsFilter {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.TagOption {
+    display: flex;
+    align-items: center;
+    margin: 8px;
+}
+
+.TagOption input[type='checkbox'] {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.FilterTitle {
+    font-weight: 500;
+}
