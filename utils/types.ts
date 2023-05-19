@@ -41,4 +41,5 @@ export type SolutionDetail = {
   author: Author;
   tags: Tag[];
   challenge_id: string;
+  challenge_title?: string;
 }

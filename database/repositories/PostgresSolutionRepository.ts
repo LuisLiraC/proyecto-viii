@@ -39,6 +39,7 @@ export class PostgresSolutionRepository implements SolutionRepository {
                       'name', user_profile.name
                   ) as author,
               challenge.id as challenge_id,
+              challenge.title as challenge_title,
               (
                         SELECT json_agg(
                                    json_build_object(

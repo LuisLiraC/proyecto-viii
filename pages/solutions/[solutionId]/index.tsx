@@ -1,13 +1,6 @@
 import { useRouter } from "next/router";
-import { Author } from "@/utils/types";
-
-type SolutionDetail = {
-  id: string;
-  description: string;
-  url: string;
-  created_at: string;
-  author: Author;
-}
+import { Author, SolutionDetail } from "@/utils/types";
+import Head from "next/head";
 
 type Comment = {
   id: string;
@@ -17,6 +10,8 @@ type Comment = {
 }
 
 function ChallengeDetail({ solution, comments }: { solution: SolutionDetail, comments: Comment[] }) {
+
+  console.log(solution);
 
   const router = useRouter();
   const handleSubmit = async (e: any) => {
@@ -44,33 +39,61 @@ function ChallengeDetail({ solution, comments }: { solution: SolutionDetail, com
     await router.push(`/solutions/${solution.id}`);
   };
 
+  const title = `Solución de ${solution.author.name} | Open Dev Projects`;
+
   return (
     <div>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <div>
-        <h1>Solución de {solution.author.name}</h1>
-        <a href={solution.url} target="_blank" rel="noreferrer">Ver solución</a>
-        <p>{solution.description}</p>
+        <h1 className="SolutionDetail-ChallengeTitle">
+          Solución a: {solution.challenge_title || '❓ Reto eliminado'}
+        </h1>
+        <h2 className="SolutionDetail-Author">
+          Autor: {solution.author.name}
+        </h2>
+        <a
+          href={solution.url}
+          target="_blank"
+          rel="noreferrer"
+          className="ButtonLink"
+        >
+          Ver solución
+        </a>
+        <p className="SolutionDetail-Description">
+          {solution.description}
+        </p>
       </div>
+
+      <hr/>
 
       <div>
         <h2>Comentarios</h2>
-        {
-          comments.map((comment) => (
-            <div key={comment.id}>
-              <h3>{comment.author.name}</h3>
-              <p>{comment.content}</p>
-            </div>
-          ))
-        }
+        <div className="CommentsContainer">
+          {
+            comments.map((comment) => (
+              <div key={comment.id} className="Comment">
+                <h3 className="Comment-Author">
+                  {comment.author.name}
+                </h3>
+                <p className="Comment-Content">
+                  {comment.content}
+                </p>
+              </div>
+            ))
+          }
+        </div>
       </div>
 
-      <div onSubmit={handleSubmit}>
-        <form>
-          <div>
-            <label htmlFor="content">Comentario</label>
-            <textarea name="content" id="content" cols={30} rows={10}></textarea>
+      <hr/>
+
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div className="FormElement">
+            <textarea name="content" id="content" cols={30} rows={3}></textarea>
           </div>
-          <button type="submit">Comentar</button>
+          <button className="SubmitButton" type="submit">Comentar</button>
         </form>
       </div>
     </div>

@@ -313,3 +313,45 @@ body {
     -webkit-line-clamp: 3; /* Número de líneas a mostrar */
     overflow: hidden;
 }
+
+.SolutionDetail-ChallengeTitle {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.SolutionDetail-Author {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: gray;
+}
+
+.SolutionDetail-Description {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 8px 0;
+    padding-right: 20px;
+    white-space: pre-line;
+}
+
+hr {
+    border: 1px solid #d7d7d7;
+    margin: 16px 0;
+}
+
+.Comment {
+    margin: 1.2rem 0.5rem;
+}
+
+.Comment-Content {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #3f3f3f;
+    white-space: pre-line;
+}
+
+.Comment-Author {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
