@@ -1,8 +1,8 @@
-import Link from "next/link";
 import Head from 'next/head';
-import { Challenge } from "@/database/entities/Challenge";
 import { useState, useEffect } from "react";
-import { Tag } from "@/utils/types";
+import { Challenge, Tag } from "@/utils/types";
+import Filters from "@/components/Filters";
+import Results from "@/components/Results";
 
 interface Props {
   challenges: Challenge[];
@@ -16,6 +16,16 @@ export default function Home(props: Props) {
 
   const handleFilterInput = (e: any) => {
     setQuery(e.target.value);
+  };
+
+  const handleFilterTags = (e: any) => {
+    const tag = e.target.value;
+    if (tags.includes(tag)) {
+      const newTags = tags.filter((t) => t !== tag);
+      setTags(newTags);
+    } else {
+      setTags([...tags, tag]);
+    }
   };
 
   useEffect(() => {
@@ -38,76 +48,19 @@ export default function Home(props: Props) {
     setChallenges(filteredChallenges);
   }, [tags, props.challenges, query]);
 
-  const handleFilterTags = (e: any) => {
-    const tag = e.target.value;
-    if (tags.includes(tag)) {
-      const newTags = tags.filter((t) => t !== tag);
-      setTags(newTags);
-    } else {
-      setTags([...tags, tag]);
-    }
-  };
-
   return (
     <div className="Home">
       <Head>
         <title>Home | Open Dev Projects</title>
       </Head>
-      <div className="Filters">
-        <div className="FormElement">
-          <label htmlFor="title" className="FilterTitle">Buscar</label>
-          <input type={'text'} onChange={handleFilterInput}/>
-        </div>
-        <hr/>
-        <div>
-          <p className="FilterTitle">Etiquetas</p>
 
-          <div className="TagsFilter">
-            {props.tags.map((tag) => (
-              <div key={tag.id} className="TagOption">
-                <input
-                  type="checkbox"
-                  name="tag"
-                  id={`${tag.name}`}
-                  value={tag.name}
-                  onChange={handleFilterTags}
-                />
-                <label htmlFor={`${tag.name}`}>{tag.name}</label>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Filters
+        tags={props.tags}
+        handleFilterInput={handleFilterInput}
+        handleFilterTags={handleFilterTags}
+      />
 
-      <div className="Results">
-        <h1>Retos encontrados</h1>
-        {challenges.map((challenge) => (
-          <div key={challenge.id} className='ChallengeHomeCard'>
-            <h2 className='ChallengeHomeCard-Title'>
-              {challenge.title}
-            </h2>
-            <h3 className='ChallengeHomeCard-Author'>
-              Autor: {challenge.author.name}
-            </h3>
-            <div className='TagsContainer'>
-              {
-                challenge.tags.map((tag) => (
-                  <span key={tag.id} className='Tag'>{tag.name}</span>
-                ))
-              }
-            </div>
-            <p className='ChallengeHomeCard-Description'>
-              {challenge.description}
-            </p>
-            <Link
-              href={`/challenges/${challenge.id}`}
-              className='ButtonLink'
-            >
-              Ver más
-            </Link>
-          </div>
-        ))}
-      </div>
+      <Results challenges={challenges}/>
     </div>
   );
 }

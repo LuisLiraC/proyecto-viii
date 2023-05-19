@@ -1,10 +1,24 @@
-import { Challenge } from "@/database/entities/Challenge";
-import { Solution } from "@/database/entities/Solution";
-
 export type ErrorMessage = {
   message: string,
 }
 
+export type Role = {
+  id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+
+export type UserProfile = {
+  id: string;
+  auth_user_id: string;
+  name: string;
+  username: string;
+  created_at: string;
+  updated_at: string;
+  role: Role;
+}
 
 export type JwtPayload = {
   id: string;
@@ -45,6 +59,26 @@ export type SolutionDetail = {
   tags: Tag[];
   challenge_id: string;
   challenge_title?: string;
+}
+
+export type Challenge = {
+  id: string;
+  title: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  author: UserProfile
+  tags: Array<Tag>;
+}
+
+export type Solution = {
+  id: string;
+  description: string;
+  url: string;
+  challenge_id: string;
+  created_at: string;
+  updated_at: string;
+  author: UserProfile;
 }
 
 export type PublicProfile = {
