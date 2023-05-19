@@ -27,7 +27,7 @@ export default function Home(props: Props) {
           <p className='ChallengeHomeCard-Description'>{challenge.description}</p>
           <Link
             href={`/challenges/${challenge.id}`}
-            className='ChallengeHomeCard-Link'
+            className='ButtonLink'
           >
             Ver más
           </Link>

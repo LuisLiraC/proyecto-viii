@@ -66,7 +66,7 @@ export class PostgresSolutionRepository implements SolutionRepository {
                  solution.description,
                  solution.url,
                  solution.created_at,
-                 challenge.id,
+                 challenge.id as challenge_id,
                  (
                         SELECT json_agg(
                                    json_build_object(

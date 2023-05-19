@@ -94,18 +94,19 @@ body {
 .TagsContainer {
     display: flex;
     gap: 8px;
+    margin: 8px 0;
 }
 
 .Tag {
     font-size: 12px;
-    background-color: #111111;
-    color: #fff;
+    background-color: #e7e7e7;
+    color: #343434;
     padding: 4px 16px;
     border-radius: 16px;
     text-decoration: none;
 }
 
-.ChallengeHomeCard-Link {
+.ButtonLink {
     display: block;
     text-decoration: none;
     color: white;
@@ -118,8 +119,33 @@ body {
     transition: background-color 0.3s ease-in-out;
 }
 
-.ChallengeHomeCard-Link:hover {
+.ButtonLink:hover {
     background: #5f1bbf;
+}
+
+.ButtonLink-Outline {
+    display: block;
+    text-decoration: none;
+    color: #7f3cee;
+    background: #fff;
+    padding: 4px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+    border: 2px solid #7f3cee;
+}
+
+.ButtonLink-Outline:hover {
+    background: rgba(127, 60, 238, 0.10);
+}
+
+.ButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0;
 }
 
 .ChallengeDetail-View {
@@ -251,3 +277,39 @@ body {
     border-left: 2px solid #d7d7d7;
 }
 
+.Profile-ContributionsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Profile-ContributionColumn {
+    padding: 64px;
+}
+
+.Profile-ColumnTitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.ContributionCard {
+    border: 2px solid #d7d7d7;
+    padding: 16px;
+    margin: 8px 0;
+    border-radius: 8px;
+}
+
+.ContributionTitle {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.ContributionDescription {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 8px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Número de líneas a mostrar */
+    overflow: hidden;
+}

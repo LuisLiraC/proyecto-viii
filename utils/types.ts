@@ -39,4 +39,6 @@ export type SolutionDetail = {
   url: string;
   created_at: string;
   author: Author;
+  tags: Tag[];
+  challenge_id: string;
 }
