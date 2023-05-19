@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from 'next/head';
 import { Challenge } from "@/database/entities/Challenge";
 
 interface Props {
@@ -8,6 +9,9 @@ interface Props {
 export default function Home(props: Props) {
   return (
     <div>
+      <Head>
+        <title>Home | Open Dev Projects</title>
+      </Head>
       <h1>Retos encontrados</h1>
       {props.challenges.map((challenge) => (
         <div key={challenge.id} className='ChallengeHomeCard'>

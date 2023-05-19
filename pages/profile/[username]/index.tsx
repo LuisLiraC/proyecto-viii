@@ -1,5 +1,6 @@
 import { ChallengeDetail, SolutionDetail } from "@/utils/types";
 import Link from "next/link";
+import Head from "next/head";
 
 type ProfileData = {
   challenges: ChallengeDetail[];
@@ -7,8 +8,12 @@ type ProfileData = {
 }
 
 export default function Profile({ username, profileData }: { username: string, profileData: ProfileData }) {
+  const title = `Perfil de ${username} | Open Dev Projects`;
   return (
     <div>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <h1>Perfil de {username}</h1>
       <div>
         <h2>Soluciones subidas</h2>

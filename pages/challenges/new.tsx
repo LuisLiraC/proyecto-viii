@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Tag } from "@/utils/types";
+import Head from "next/head";
 
 function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
   const [tags, setTags] = useState<String[]>([]);
@@ -46,6 +47,9 @@ function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
 
   return (
     <div>
+      <Head>
+        <title>Crear reto | Open Dev Projects</title>
+      </Head>
       <h1 className="NewChallengeTitle">Crear reto</h1>
       <form onSubmit={handleSubmit}>
         <div className='FormElement'>

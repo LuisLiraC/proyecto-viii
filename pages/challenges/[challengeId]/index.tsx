@@ -1,5 +1,6 @@
 import { ChallengeDetail } from "@/utils/types";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function ChallengeDetail({ challenge }: { challenge: ChallengeDetail }) {
 
@@ -32,6 +33,9 @@ function ChallengeDetail({ challenge }: { challenge: ChallengeDetail }) {
 
   return (
     <div className="ChallengeDetail-View">
+      <Head>
+        <title>{challenge.title} | Open Dev Projects</title>
+      </Head>
       <div className="ChallengeDetail">
         <h1 className="ChallengeDetail-Title">{challenge.title}</h1>
         <h2 className="ChallengeDetail-Author">Autor: {challenge.author.name}</h2>
