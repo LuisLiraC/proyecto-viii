@@ -3,9 +3,6 @@ import { SolutionDetail, Comment } from "@/utils/types";
 import Head from "next/head";
 
 function ChallengeDetail({ solution, comments }: { solution: SolutionDetail, comments: Comment[] }) {
-
-  console.log(solution);
-
   const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
