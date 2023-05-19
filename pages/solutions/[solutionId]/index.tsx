@@ -1,13 +1,6 @@
 import { useRouter } from "next/router";
-import { Author, SolutionDetail } from "@/utils/types";
+import { SolutionDetail, Comment } from "@/utils/types";
 import Head from "next/head";
-
-type Comment = {
-  id: string;
-  content: string;
-  created_at: string;
-  author: Author;
-}
 
 function ChallengeDetail({ solution, comments }: { solution: SolutionDetail, comments: Comment[] }) {
 

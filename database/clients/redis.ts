@@ -15,4 +15,5 @@ const client = createClient(options);
 client.connect()
   .then(() => console.log("Redis connected"))
   .catch((error) => console.error(error));
+
 export default client;

@@ -1,16 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { ErrorMessage } from '@/utils/types';
+import type { ErrorMessage, PublicProfile } from '@/utils/types';
 import postgres from '@/database/clients/postgres';
 import redis from "@/database/clients/redis";
 import { PostgresChallengeRepository } from '@/database/repositories/PostgresChallengeRepository';
 import { PostgresSolutionRepository } from '@/database/repositories/PostgresSolutionRepository';
-import { Challenge } from '@/database/entities/Challenge';
-import { Solution } from '@/database/entities/Solution';
-
-type PublicProfile = {
-  challenges: Challenge[];
-  solutions: Solution[];
-}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<PublicProfile | ErrorMessage>) {
   if (req.method !== 'GET') return res.status(405).json({ message: 'Method not allowed' });

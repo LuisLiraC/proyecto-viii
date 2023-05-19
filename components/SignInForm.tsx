@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 
-
 function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,10 +11,8 @@ function SignInForm() {
     if (!email || !password) {
       return;
     }
-
     await signIn({ email, password });
   };
-
 
   return (
     <div className="SignFormContainer">

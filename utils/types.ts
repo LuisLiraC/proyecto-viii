@@ -1,3 +1,6 @@
+import { Challenge } from "@/database/entities/Challenge";
+import { Solution } from "@/database/entities/Solution";
+
 export type ErrorMessage = {
   message: string,
 }
@@ -42,4 +45,16 @@ export type SolutionDetail = {
   tags: Tag[];
   challenge_id: string;
   challenge_title?: string;
+}
+
+export type PublicProfile = {
+  challenges: Challenge[];
+  solutions: Solution[];
+}
+
+export type Comment = {
+  id: string;
+  content: string;
+  created_at: string;
+  author: Author;
 }
