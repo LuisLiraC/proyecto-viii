@@ -6,8 +6,15 @@ function ChallengeDetail({ solution, comments }: { solution: SolutionDetail, com
   const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const content = e.target.content.value.trim();
+
+    if (!content) {
+      alert("El contenido del comentario es obligatorio");
+      return;
+    }
+
     const newComment = {
-      content: e.target.content.value,
+      content,
       solution_id: solution.id,
     };
 
