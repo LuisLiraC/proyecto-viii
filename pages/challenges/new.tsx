@@ -11,6 +11,11 @@ function NewChallenge({ currentTags }: { currentTags: Tag[] }) {
     const title = e.target.title.value.trim();
     const description = e.target.description.value.trim();
 
+    if (!title || !description) {
+      alert("Por favor, rellena todos los campos");
+      return;
+    }
+
     const newChallenge = {
       title,
       description,
